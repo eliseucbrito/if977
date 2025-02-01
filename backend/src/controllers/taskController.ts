@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
-import { NextFunction, Request, Response } from 'express';
-import { IdSchema, TaskSchema } from 'src/schemas/TaskSchema';
+import { PrismaClient } from "@prisma/client";
+import { NextFunction, Request, Response } from "express";
+import { IdSchema, TaskSchema } from "../schemas/TaskSchema";
 
 const prisma = new PrismaClient();
 
@@ -14,8 +14,8 @@ export const createTask = async (
     const task = await prisma.task.create({
       data: {
         ...taskData,
-        data_vencimento: taskData.data_vencimento || null
-      }
+        data_vencimento: taskData.data_vencimento || null,
+      },
     });
     res.status(201).json(task);
   } catch (err) {
@@ -31,7 +31,7 @@ export const getAllTasks = async (
   try {
     const { status } = req.query;
     const tasks = await prisma.task.findMany({
-      where: status ? { status: String(status) } : {}
+      where: status ? { status: String(status) } : {},
     });
     res.json(tasks);
   } catch (err) {
@@ -47,14 +47,14 @@ export const getTaskById = async (
   try {
     const id = IdSchema.parse(Number(req.params.id));
     const task = await prisma.task.findUnique({
-      where: { id }
+      where: { id },
     });
 
     if (!task) {
       res.status(404).json({
         code: 404,
-        status: 'error',
-        message: 'Tarefa não encontrada'
+        status: "error",
+        message: "Tarefa não encontrada",
       });
       return;
     }
@@ -75,7 +75,7 @@ export const updateTask = async (
     const taskData = TaskSchema.partial().parse(req.body);
     const task = await prisma.task.update({
       where: { id },
-      data: taskData
+      data: taskData,
     });
     res.json(task);
   } catch (err) {
@@ -91,7 +91,7 @@ export const deleteTask = async (
   try {
     const id = IdSchema.parse(Number(req.params.id));
     await prisma.task.delete({
-      where: { id }
+      where: { id },
     });
     res.status(204).end();
   } catch (err) {

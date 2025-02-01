@@ -50,17 +50,6 @@ cd if977/backend
 pnpm install
 ```
 
-### 3️⃣ Configurar o Banco de Dados
-
-Não é necessário configurar nada! O **SQLite** será gerado automaticamente no arquivo `dev.db`.  
-No entanto, o Prisma precisa estar apontando corretamente para ele.  
-
-Crie um arquivo `.env` na raiz do projeto e adicione:
-
-```
-DATABASE_URL="file:./dev.db"
-```
-
 ---
 
 ## 🔧 Configuração do Prisma
@@ -116,8 +105,8 @@ pnpm dev
 
 | Método | Rota              | Descrição |
 |--------|-------------------|-----------|
-| GET    | `/api/tarefas`      | Lista todas as tarefas |
-| GET    | `/api/tarefas/:id`  | Busca uma tarefa pelo ID |
-| POST   | `/api/tarefas`      | Cria uma nova tarefa |
-| PUT    | `/api/tarefas/:id`  | Atualiza uma tarefa existente |
-| DELETE | `/api/tarefas/:id`  | Remove uma tarefa |
+| GET    | `/tarefas`      | Lista todas as tarefas |
+| GET    | `/tarefas/:id`  | Busca uma tarefa pelo ID |
+| POST   | `/tarefas`      | Cria uma nova tarefa |
+| PUT    | `/tarefas/:id`  | Atualiza uma tarefa existente |
+| DELETE | `/tarefas/:id`  | Remove uma tarefa |
